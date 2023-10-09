@@ -1,0 +1,9 @@
+site_name: Home - Predicting Vehicle Prices
+site_description: Prediksi Harga Kendaraan
+site_author: Prasetyo Widyantoro
+copyright: Prasetyo Widyantoro@2023
+nav:
+  - DOKUMENTASI: index.md
+  - TENTANG SAYA: about.md
+theme: 
+  name: readthedocs

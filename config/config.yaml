@@ -1,0 +1,82 @@
+ # Path related
+raw_dataset_dir: dataset/1 - raw data/ #valid
+
+train_set_path:
+- dataset/2 - processed/X_train.pkl
+- dataset/2 - processed/y_train.pkl
+valid_set_path:
+- dataset/2 - processed/X_valid.pkl
+- dataset/2 - processed/y_valid.pkl
+test_set_path:
+- dataset/2 - processed/X_test.pkl
+- dataset/2 - processed/y_test.pkl
+
+#RobustScaler
+robust_scaler_train:
+- dataset/3 - final/X_train_robust.pkl
+- dataset/3 - final/y_train.pkl
+robust_scaler_valid:
+- dataset/3 - final/X_valid_robust.pkl
+- dataset/3 - final/y_valid.pkl
+robust_scaler_test:
+- dataset/3 - final/X_test_robust.pkl
+- dataset/3 - final/y_test.pkl
+
+production_model_path: model/5 - Model Final
+model_robust_scaler: model/5 - Model Final/robust_scaler.pkl
+robust_scaler: model/5 - Model Final/
+model_final: model/5 - Model Final/xgboost_cv_robust.pkl
+
+# Debug related
+print_debug: true
+
+# Columns by data type related
+int64_columns:
+- Year
+- Kms_Driven
+- Owner
+float64_columns:
+- Present_Price
+object_columns:
+- Fuel_Type
+- Seller_Type
+- Transmission
+
+# Predictors and label related
+label: Selling_Price
+predictors:
+- Year
+- Kms_Driven
+- Owner
+- Present_Price
+- Fuel_Type
+- Seller_Type
+- Transmission
+
+# Range of data related
+range_Year:
+- 2003
+- 2018
+range_Kms_Driven:
+- 500
+- 500000
+range_Owner:
+- 0
+- 1
+- 3
+range_Present_Price:
+- 0.32
+- 100
+range_Fuel_Type:
+- Petrol
+- Diesel
+- CNG
+range_Seller_Type:
+- Dealer
+- Individual
+range_Transmission:
+- Manual
+- Automatic
+range_Selling_Price:
+- 0.1
+- 50.0
