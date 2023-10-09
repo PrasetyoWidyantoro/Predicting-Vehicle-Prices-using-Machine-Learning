@@ -1,6 +1,6 @@
 # Predicting Vehicle Prices using Machine Learning 
 
-- `Link Dokumentasi` : 
+- `Link Dokumentasi` : https://prasetyowidyantoro.github.io/Predicting-Vehicle-Prices-using-Machine-Learning/
 - `Link Medium` : https://medium.com/@prasetyow938/predicting-vehicle-prices-using-xgboostregressor-d1bcdaa411fc
 - `Link Youtube` : -
 
