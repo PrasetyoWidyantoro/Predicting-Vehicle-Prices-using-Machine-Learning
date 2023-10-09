@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="Prediksi Harga Kendaraan" /><meta name="author" content="Prasetyo Widyantoro" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>Home - Predicting Vehicle Prices</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "DOKUMENTASI";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> Home - Predicting Vehicle Prices
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href=".">DOKUMENTASI</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#business-problem">Business Problem</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#business-objective">Business Objective</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#business-metrics">Business Metrics</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#machine-learning-solution">Machine Learning Solution</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#machine-learning-metrics">Machine Learning Metrics</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#literature-review">Literature Review</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#alur-transformasi-data-end-to-end-machine-learning-process">Alur Transformasi Data (End to End Machine Learning Process)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data-preparation">Data Preparation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#data-definition">Data Definition</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exploratory-data-analysis-eda">Exploratory Data Analysis (EDA)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#check-skewed-data">Check Skewed Data</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#distribusi-data">Distribusi Data</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#melihat-proporsi-data-secara-jumlah-dan-persentase">Melihat Proporsi Data secara Jumlah dan Persentase</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#correlation-check">Correlation Check</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#outlier-detection">Outlier Detection</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#uji-hipotesis">Uji Hipotesis</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#kesimpulan-eda">Kesimpulan EDA</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data-preprocessing">Data Preprocessing</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data-modeling">Data Modeling</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#xgboost-regressor-gradient-boosting-for-regression">XGBoost Regressor: Gradient Boosting for Regression</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#experiment-model-result">Experiment Model Result</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#best-model-result">Best Model Result</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#machine-learning-services">Machine Learning Services</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#menggunakan-docker-container">Menggunakan Docker Container</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cara-menjalankan-service">Cara Menjalankan Service</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#cara-menjalankan-script-dilokal-dengan-dua-terminal-sekaligus">Cara menjalankan Script Dilokal dengan Dua Terminal Sekaligus</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#konfigurasi-awal">Konfigurasi Awal</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#cara-menjalankan-api">Cara Menjalankan API</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#cara-menjalankan-streamlit">Cara Menjalankan Streamlit</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#cara-serve-mkdocs">Cara serve MkDocs</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cara-menjalankan-sevice-dengan-menggunakan-docker">Cara menjalankan Sevice dengan menggunakan Docker</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#kesimpulan">Kesimpulan</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#future-works">Future Works</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#reference">Reference</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="about/">TENTANG SAYA</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">Home - Predicting Vehicle Prices</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>DOKUMENTASI</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="predicting-vehicle-prices-using-xgboostregressor">Predicting Vehicle Prices using XGBoostRegressor</h1>
+<h2 id="business-problem">Business Problem</h2>
+<p>Dalam dunia yang terus berkembang dan berubah dengan cepat, industri otomotif tidak luput dari perubahan dinamis. Bagi perusahaan yang beroperasi dalam penjualan kendaraan, memiliki pemahaman yang kuat tentang bagaimana menentukan harga kendaraan secara akurat adalah kunci kesuksesan. Pelanggan modern mengharapkan harga yang adil dan transparan, sementara persaingan di pasar mobil yang kompetitif memaksa perusahaan untuk menjalankan operasi dengan efisiensi tinggi.</p>
+<p>Namun, menentukan harga yang tepat untuk kendaraan bukanlah tugas yang mudah. Banyak faktor yang memengaruhi nilai kendaraan, seperti merek, model, tahun produksi, jarak tempuh, jenis bahan bakar, tipe seller, transmisi, dan jumlah kepemilikan kendaraan sebelumnya. Variabilitas dalam data ini dapat membuat harga yang sangat bervariasi, dan kesalahan dalam menentukan harga dapat memiliki dampak yang signifikan pada laba dan kepuasan pelanggan.</p>
+<p>Inilah mengapa penggunaan teknologi machine learning menjadi semakin penting dalam industri otomotif. Dengan memanfaatkan algoritma machine learning regresi, perusahaan dapat memprediksi harga kendaraan berdasarkan karakteristik yang ada dalam dataset. Dengan kata lain, kami memiliki kemampuan untuk memberikan estimasi harga yang lebih akurat kepada pelanggan kami, yang pada gilirannya akan memberikan keuntungan besar dalam hal kepuasan pelanggan dan efisiensi operasional.</p>
+<h2 id="business-objective">Business Objective</h2>
+<p>Dalam konteks penggunaan machine learning regression untuk memprediksi harga kendaraan, tujuan bisnis kami adalah meningkatkan efisiensi dan profitabilitas dalam bisnis otomotif kami. Kami ingin mencapai hal ini dengan beberapa cara:</p>
+<ol>
+<li><code>Optimasi Harga</code>: Kami berusaha untuk menetapkan harga kendaraan yang sesuai dengan nilai sebenarnya, menghindari harga yang terlalu tinggi yang dapat menghalangi pembeli potensial atau harga terlalu rendah yang dapat mengurangi keuntungan.</li>
+<li><code>Peningkatan Keuntungan</code>: Dengan memprediksi harga dengan lebih akurat, kami berharap untuk meningkatkan margin laba kami dan mencapai keuntungan yang lebih tinggi dari penjualan kendaraan.</li>
+<li><code>Pengalaman Pelanggan yang Lebih Baik</code>: Kami ingin memberikan pelanggan pengalaman yang lebih baik dengan menawarkan harga yang lebih adil dan kompetitif, membangun kepuasan pelanggan yang lebih besar.</li>
+<li><code>Pengambilan Keputusan yang Terinformasi</code>: Kami berharap untuk membuat keputusan yang lebih terinformasi terkait dengan persediaan kendaraan, strategi penetapan harga, dan manajemen rantai pasokan.</li>
+<li><code>Mempertahankan Daya Saing</code>: Kami ingin tetap menjadi pesaing yang kuat di pasar otomotif yang kompetitif ini, terus beradaptasi dengan perubahan pasar.</li>
+<li><code>Inovasi dan Pertumbuhan Berkelanjutan</code>: Kami akan terus memperbarui dan meningkatkan model machine learning kami untuk mendorong inovasi dan pertumbuhan berkelanjutan dalam bisnis kami.</li>
+</ol>
+<p>Dengan mencapai tujuan-tujuan ini, kami berharap untuk mengoptimalkan operasi kami, memuaskan pelanggan kami, dan tetap menjadi pemain kunci di industri otomotif.</p>
+<h2 id="business-metrics">Business Metrics</h2>
+<p>Dalam rangka mencapai tujuan bisnis kami yang terkait dengan prediksi harga kendaraan menggunakan machine learning regression, kami telah menentukan sejumlah metrik bisnis yang akan kami gunakan untuk mengukur kesuksesan proyek ini. Beberapa metrik kunci yang relevan adalah:</p>
+<ol>
+<li><code>Margin Laba</code>: Salah satu metrik bisnis utama adalah margin laba kami. Kami ingin melihat peningkatan dalam margin laba kami sebagai hasil dari penggunaan model ini untuk mengoptimalkan harga kendaraan.</li>
+<li><code>Tingkat Konversi</code>: Kami akan memonitor tingkat konversi pembeli potensial menjadi pembeli sebenarnya setelah menerapkan model ini. Kami berharap harga yang lebih akurat dapat meningkatkan tingkat konversi.</li>
+<li><code>Kepuasan Pelanggan</code>: Kami akan melakukan survei dan mengumpulkan umpan balik pelanggan untuk mengukur tingkat kepuasan mereka terhadap harga yang kami tawarkan.</li>
+<li><code>Peningkatan Keuntungan</code>: Peningkatan laba kotor dan laba bersih menjadi metrik utama dalam mengukur keberhasilan bisnis kami yang dapat dicapai dengan model ini.</li>
+</ol>
+<p>Dengan memantau metrik-metrik ini secara berkala, kami akan dapat mengukur dampak positif dari penggunaan machine learning regression dalam memprediksi harga kendaraan dan memastikan bahwa proyek ini berkontribusi secara positif terhadap tujuan bisnis kami.</p>
+<h2 id="machine-learning-solution">Machine Learning Solution</h2>
+<p>Untuk mengatasi tantangan dalam memprediksi harga kendaraan (mobil), kami telah mengimplementasikan solusi machine learning menggunakan teknik regresi. Solusi ini memanfaatkan model regresi, seperti XGBoost Regressor, yang telah dilatih dengan dataset berisi berbagai atribut kendaraan.</p>
+<p>Dengan menerapkan solusi machine learning ini, kami berharap dapat meningkatkan akurasi prediksi harga kendaraan kami dan mengoptimalkan keuntungan bisnis kami melalui harga yang lebih baik. Solusi ini juga memungkinkan kami untuk mengikuti tren pasar dan menjaga daya saing dalam industri penjualan kendaraan.</p>
+<h2 id="machine-learning-metrics">Machine Learning Metrics</h2>
+<p>Dalam mengevaluasi kinerja model machine learning kami untuk memprediksi harga kendaraan menggunakan XGBoost Regressor, kami memanfaatkan metrik bisnis utama yaitu <code>Mean Absolute Error (MAE)</code>.</p>
+<p><code>MAE</code> mengukur sejauh mana perbedaan antara harga yang diprediksi oleh model dengan harga sebenarnya pada dataset uji. Metrik ini diukur dalam unit mata uang (misalnya, dalam kasus ini, dalam satuan “lakhs” atau ratus ribu mata uang lokal). Semakin rendah nilai MAE, semakin baik performa model.</p>
+<p>Dengan MAE, kami dapat memberikan estimasi berapa banyak harga rata-rata model kami akan berbeda dari harga sebenarnya. Ini memberikan gambaran yang jelas tentang seberapa akurat prediksi model kami dalam menghargai kendaraan.</p>
+<p>Sebagai contoh, jika MAE adalah 1.0 lakhs, ini berarti rata-rata prediksi kami akan memiliki perbedaan sekitar 1.0 lakhs dari harga sebenarnya. Dengan pemahaman ini, kami dapat mengukur dan memantau sejauh mana model kami dapat memberikan prediksi harga kendaraan yang akurat, yang sangat penting dalam industri penjualan kendaraan. Semakin mendekati nol MAE, semakin baik kualitas prediksi kami, dan ini membantu meningkatkan kepuasan pelanggan dan profitabilitas bisnis kami.</p>
+<h2 id="literature-review">Literature Review</h2>
+<p><strong>Used Car Price Prediction with Random Forest Regressor Model</strong></p>
+<p>Penelitian tersebut bertujuan untuk melakukan prediksi harga mobil dengan jumlah data sebanyak 8128 data dan 13 atribut yang bersumber dari Kaggle. Evaluasi metrics machine learning regresi pada penelitian ini menggunakan MAE dan RMSE dengan hasil model terbaik yakni Random Forest pada ekperiment menghasilkan tingkat error MAE=1,006 dan RMSE=1,452. (Kriswantara &amp; Sadikin, 2022)</p>
+<p><strong>Using machine learning methods to predict electric vehicles penetration in the automotive market</strong></p>
+<p>Penelitian ini kumpulan data utama berisi penjualan bulanan dan registrasi 357 kendaraan baru di Amerika Serikat Amerika dari tahun 2014 hingga 2020. Evaluasi metrics machine learning regresi pada penelitian ini Mean Absolute Percentage Error, Normalized Root Mean Square Error, R-square, slope, and intercept of ftted linear regressions. Dalam upaya memprediksi penjualan, penelitian ini menggunakan beberapa model, termasuk LSTM (Long Short-Term Memory) dan ConvLSTM (Convolutional LSTM). Untuk meningkatkan kinerja LSTM, penelitian ini mengusulkan model hibrida baru yang disebut “Hybrid LSTM dengan perhatian dua dimensi dan jaringan residual”. Semua model dalam penelitian ini dikembangkan sebagai model Pembelajaran Mesin Otomatis (AutoML) untuk meningkatkan proses pemodelan. Model hibrida yang diusulkan mampu memprediksi pangsa pasar EV dengan Mean Absolute Error yang dapat diterima sebesar 3.5%. (Afandizadeh et al., 2023)</p>
+<p><strong>Predicting Resale Car Prices Using Machine Learning Regression Models With Ensemble Techniques</strong></p>
+<p>Dalam paper ini, dikembangkan beberapa model yaitu Multiple Linear Regression, KNN, Random Forest, Gradient Boosting, dan XGBoost, dan hasilnya dibandingkan untuk akurasi. Dari semua model tersebut, XGBoost memberikan nilai r2 tertinggi, yaitu 88% untuk data pelatihan dan 87% untuk data uji. (Krishnan &amp; Selvaraj, 2022)</p>
+<p><strong>Using Linear Regression For Used Car Price Prediction</strong></p>
+<p>Dalam penelitian ini, efektivitas model regresi linear dieksplorasi untuk memprediksi harga mobil bekas. Model regresi linear diterapkan pada dataset yang berisi fitur-fitur dan informasi harga kendaraan di Turki pada tahun 2020. Sebagai hasilnya, memilih 1/3 dari dataset sebagai data uji, ternyata skor R2 untuk keberhasilan prediksi model adalah 73%. Untuk meningkatkan efektivitas hasilnya, dataset dapat diperluas atau bagian pra-pemrosesan dapat diperinci lebih detail. (MUTİ &amp; YILDIZ, 2023)</p>
+<h2 id="alur-transformasi-data-end-to-end-machine-learning-process">Alur Transformasi Data (End to End Machine Learning Process)</h2>
+<h2 id="data-preparation">Data Preparation</h2>
+<p><strong>Gambar Arsitektur Data Preparation</strong>
+<img alt="flow_chart_1.drawio" src="images/flow_chart_1.drawio.png" /></p>
+<h3 id="data-definition">Data Definition</h3>
+<p>Data yang digunakan merupakan data yang menggambarkan karakteristik vehicle berdasarkan harga jualnya. adapun fitur karakteristik vehicle yang digunakan antara lain</p>
+<p>Predicting Vehicle Prices saat ini menggunakan data yang disadur dari kaggle dengan laman :</p>
+<p>https://www.kaggle.com/code/anandtalware/vehicle-sale-price-prediction-9-sept-2023/input?select=car+data.csv</p>
+<p>Data berisi 301 baris dan 8 kolom yaitu :</p>
+<ul>
+<li>Year : Tahun saat mobil tersebut dibeli</li>
+<li>Selling_Price : Harga saat mobil tersebut dijual</li>
+<li>Present_Price : harga mobil bekas showroom saat ini</li>
+<li>Kms_driven : Jarak tempuh yang sudah dilalui mobil tersebut</li>
+<li>Fuel_Type : Jenis bahan bakar mobil </li>
+<li>Seller_Type : Tipe Penjual, perorangan atau dealer</li>
+<li>Transmission : Jenis Transmisi oper gigi mobil, manual atau otomatis</li>
+<li>Owner : Jumlah pemilik mobil sebelumnya.</li>
+</ul>
+<p><code>Year :
+[int64]
+[2003–2018]
+Tahun saat mobil tersebut dibeli</code></p>
+<p><code>Selling_Price :
+[float64]
+[0.1–35.0]
+Harga saat mobil tersebut dijual</code></p>
+<p><code>Present_Price :
+[float64]
+[0.32–92.6]
+Harga mobil bekas showroom saat ini</code></p>
+<p><code>Kms_driven :
+[int64]
+[500–500000]
+Jarak tempuh yang sudah dilalui mobil tersebut</code></p>
+<p><code>Fuel_Type :
+[object]
+[‘Petrol’ ‘Diesel’ ‘CNG’]
+Jenis bahan bakar mobil</code></p>
+<p><code>Seller_Type :
+[object]
+[‘Dealer’ ‘Individual’]
+Tipe Penjual, perorangan atau dealer</code></p>
+<p><code>Transmission :
+[object]
+[‘Manual’ ‘Automatic’]
+Jenis Transmisi oper gigi mobil, manual atau otomatis</code></p>
+<p><code>owner :
+[int64]
+[0, 1, 3]
+Jumlah pemilik mobil sebelumnya.</code></p>
+<p>Setelah melakukan dataset definition maka setelah itu dilakukan pula data validation dan data splitting yang terdiri dari train set, valid set dan test set, selengkapnya saya lampirkan pada github dilaman paling bawah.</p>
+<h2 id="exploratory-data-analysis-eda">Exploratory Data Analysis (EDA)</h2>
+<ul>
+<li>Hal ini dilakukan untuk mengekplorasi kondisi data agar data lebih mudah diproses pada Algoritma Machine Learning dan memiliki kinerja model yang baik</li>
+</ul>
+<p><strong> Gambar Arsitektur Exploratory Data Analysis (EDA) </strong></p>
+<p><img alt="flow_chart_2_EDA" src="images/flow_chart_2_EDA.png" /></p>
+<h3 id="check-skewed-data">Check Skewed Data</h3>
+<p><img alt="EDA_1_Skewed_Data" src="images/EDA_1_Skewed_Data.png" /></p>
+<p>Rules : </p>
+<ul>
+<li>jika kolom mendapati skewnya sebesar &gt; +- 0.5, maka dari itu kolom tersebut akan diimputasi dengan median</li>
+<li>jika kolom mendapati skewnya sebesar &lt;= +- 0.5 kolom lainnya akan diimputasi dengan mean atau modus</li>
+</ul>
+<p>Imputasi Median :</p>
+<ul>
+<li>Kms_Driven</li>
+<li>Present_Price</li>
+<li>Owner</li>
+</ul>
+<p>Imputasi Modus :</p>
+<ul>
+<li>Year                    </li>
+</ul>
+<p>“Year” semestinya masuk dalam kategori imputasi mean. Namun, karena year jika dirata ratakan hasilnya tidak bulat datanya, dan cenderung menghasilkan data yang bias.</p>
+<h3 id="distribusi-data">Distribusi Data</h3>
+<p>Visualisasi menggunakan kdeplot diatas menghasilkan bentuk distribusi data masing-masing kolom dengan garis merah sebagai garis mean dari kolom data dan warna hijau sebagai garis median dari kolom data.</p>
+<p><img alt="EDA_2_Distribusi_Data" src="images/EDA_2_Distribusi_Data.png" /></p>
+<ul>
+<li>Year memiliki bentuk distribusi Left Skewed Distribution</li>
+<li>Kms_Driven, Present_Price, Owner dan Selling_Price memiliki bentuk distribusi Right Skewed Distribution</li>
+</ul>
+<h3 id="melihat-proporsi-data-secara-jumlah-dan-persentase">Melihat Proporsi Data secara Jumlah dan Persentase</h3>
+<p><strong>Melihat Jumlah Proporsi masing masing Kolom Kategori</strong></p>
+<p><img alt="EDA_3_Proporsi_Data_Jumlah" src="images/EDA_3_Proporsi_Data_Jumlah.png" /></p>
+<p><strong>Proporsi data kategori dalam bentuk persentase</strong></p>
+<p><img alt="EDA_3_Proporsi_Data_Jumlah" src="images/EDA_3_Proporsi_Data_Persentase.png" /></p>
+<h3 id="correlation-check">Correlation Check</h3>
+<p><img alt="EDA_4_Correlation_Check" src="images/EDA_4_Correlation_Check.png" /></p>
+<p>korelasi negatif terendah terdapat pada variabel Year dan Kms_Driven sebesar -0.53 dan Present_Price dan Selling_Price memiliki korelasi positif yang tinggi sebesar 0.89</p>
+<h3 id="outlier-detection">Outlier Detection</h3>
+<p><img alt="EDA_5_oulier_detection" src="images/EDA_5_oulier_detection.png" /></p>
+<p>Outlier pada data diatas masih dalam kategori wajar</p>
+<h3 id="uji-hipotesis">Uji Hipotesis</h3>
+<p><strong>Membandingkan antar kelompok pada kolom Fuel berdasarkan selling_price</strong></p>
+<p><img alt="EDA_6_Uji_hipotesis_1_fuel" src="images/EDA_6_Uji_hipotesis_1_fuel.png" /></p>
+<p>Dalam hipotesis null, kita berasumsi bahwa tidak ada perbedaan signifikan dalam rata-rata harga jual antara kategori bahan bakar. Hipotesis alternatif menyatakan bahwa setidaknya satu dari rata-rata harga jual dalam kategori bahan bakar berbeda dari yang lainnya, yang mengindikasikan adanya perbedaan signifikan.</p>
+<p>Uji Anova kemudian akan digunakan untuk menguji apakah terdapat perbedaan yang signifikan dalam rata-rata harga jual ('selling_price') antara kelompok kategori bahan bakar ('fuel').</p>
+<p><img alt="EDA_6_Uji_hipotesis_1" src="images/EDA_6_Uji_hipotesis_1.png" /></p>
+<p>Hasil Anova yang Anda sertakan menunjukkan bahwa ada perbedaan signifikan dalam 'selling_price' antara kategori 'fuel'. Untuk memahami lebih lanjut apa arti dari hasil ini, mari kita jelaskan beberapa konsep yang terlibat:</p>
+<ol>
+<li>
+<p><strong>Statistic (Statistik):</strong> Nilai statistik ini adalah hasil dari perhitungan statistik yang digunakan dalam uji Anova. Dalam konteks ini, itu adalah angka 44.02894808090848.</p>
+</li>
+<li>
+<p><strong>P-value (Nilai P):</strong> P-value adalah nilai probabilitas yang dihasilkan dari uji statistik. Ini mengukur sejauh mana perbedaan yang diamati antara kelompok-kelompok (dalam hal ini, kategori 'Fuel_Type') adalah hasil dari variasi acak atau jika perbedaan tersebut signifikan secara statistik. Pada kasus ini, nilai p-value sangat rendah, yaitu 7.852895544561943e-17 (sangat mendekati nol).</p>
+</li>
+<li>
+<p><strong>Terdapat perbedaan signifikan:</strong> Ketika p-value sangat rendah (umumnya kurang dari tingkat signifikansi yang telah ditentukan sebelumnya, dalam kasus ini 0.05), kita cenderung menolak hipotesis nol. Hipotesis nol dalam konteks ini adalah bahwa tidak ada perbedaan signifikan antara kelompok-kelompok. Dengan kata lain, hasil ini menunjukkan bahwa ada perbedaan signifikan dalam 'selling_price' antara kategori 'Fuel_Type'.</p>
+</li>
+</ol>
+<p>Dengan kata lain, berdasarkan hasil Anova yang Anda peroleh, dapat disimpulkan bahwa jenis bahan bakar (kategori 'Fuel_Type') memiliki pengaruh yang signifikan terhadap harga jual ('selling_price'). Perbedaan dalam jenis bahan bakar kendaraan dapat secara signifikan mempengaruhi harga penjualan. Hal ini bisa menjadi informasi yang sangat berharga dalam analisis data Anda, terutama jika Anda ingin memahami faktor-faktor apa yang memengaruhi harga jual kendaraan.</p>
+<p><strong>Membandingkan antar kelompok pada kolom seller_type berdasarkan selling_price</strong></p>
+<p><img alt="EDA_6_Uji_hipotesis_2_seller_type" src="images/EDA_6_Uji_hipotesis_2_seller_type.png" /></p>
+<p>Dalam hipotesis null, kita berasumsi bahwa tidak ada perbedaan signifikan dalam rata-rata harga jual antara kategori jenis penjual. Hipotesis alternatif menyatakan bahwa setidaknya satu dari rata-rata harga jual dalam kategori jenis penjual berbeda dari yang lainnya, yang mengindikasikan adanya perbedaan signifikan.</p>
+<p><img alt="EDA_6_Uji_hipotesis_2" src="images/EDA_6_Uji_hipotesis_2.png" /></p>
+<p><img alt="EDA_6_Uji_hipotesis_2" src="images/EDA_6_Uji_hipotesis_21.png" /></p>
+<p>Hasil Uji Mann-Whitney U yang disajikan menunjukkan bahwa ada perbedaan signifikan dalam 'selling_price' antara kategori 'seller_type'. Untuk menguraikan lebih lanjut arti dari hasil ini, mari kita bahas beberapa konsep penting:</p>
+<p>Penjelasan:</p>
+<ol>
+<li>
+<p><strong>U-Statistic (Statistik U)</strong>: Nilai statistik U adalah hasil dari Uji Mann-Whitney U yang digunakan untuk membandingkan median 'selling_price' antara kedua kelompok yang berbeda. Dalam kasus ini, statistik U memiliki nilai sekitar 119.5.</p>
+</li>
+<li>
+<p><strong>P-value (Nilai P)</strong>: P-value adalah nilai probabilitas yang dihasilkan dari Uji Mann-Whitney U. Ini mengukur sejauh mana perbedaan median 'selling_price' antara kedua kelompok 'seller_type' adalah hasil dari variasi acak atau jika perbedaan tersebut signifikan secara statistik. Nilai P yang sangat rendah, sekitar 5.52e-34, menunjukkan bahwa perbedaan yang diamati sangat tidak mungkin disebabkan oleh kebetulan.</p>
+</li>
+<li>
+<p><strong>Terdapat perbedaan signifikan</strong>: Ketika nilai P sangat rendah (biasanya lebih rendah dari tingkat signifikansi yang telah ditentukan sebelumnya, dalam kasus ini 0.05), kita dapat menarik kesimpulan bahwa terdapat perbedaan signifikan dalam median 'selling_price' antara kedua kategori 'seller_type'. Artinya, jenis penjual ('seller_type') memengaruhi secara signifikan harga jual ('selling_price') kendaraan.</p>
+</li>
+</ol>
+<p>Hasil ini memiliki implikasi penting dalam analisis data. Ini menunjukkan bahwa jenis penjual yang berbeda, yang mungkin memiliki strategi penjualan yang berbeda atau audiens yang berbeda, dapat memiliki dampak yang signifikan pada median harga jual kendaraan. Dengan pemahaman ini, bisnis atau organisasi dapat mengambil tindakan yang sesuai, seperti menyesuaikan strategi harga atau pemasaran berdasarkan jenis penjual untuk mengoptimalkan penjualan dan keuntungan.</p>
+<p><strong>Membandingkan antar kelompok pada kolom transmission berdasarkan selling_price</strong></p>
+<p><img alt="EDA_6_Uji_hipotesis_3_transmission" src="images/EDA_6_Uji_hipotesis_3_transmission.png" /></p>
+<p>Dalam hipotesis null, kita berasumsi bahwa tidak ada perbedaan signifikan dalam rata-rata harga jual antara kategori transmisi. Hipotesis alternatif menyatakan bahwa setidaknya satu dari rata-rata harga jual dalam kategori transmisi berbeda dari yang lainnya, yang mengindikasikan adanya perbedaan signifikan.</p>
+<p><img alt="EDA_6_Uji_hipotesis_2" src="images/EDA_6_Uji_hipotesis_3.png" /></p>
+<p><img alt="EDA_6_Uji_hipotesis_2" src="images/EDA_6_Uji_hipotesis_31.png" /></p>
+<p><strong>Hasil Uji Mann-Whitney U</strong>:</p>
+<ul>
+<li>
+<p><strong>Statistik U (U-Statistic)</strong>: Nilai statistik U adalah hasil dari Uji Mann-Whitney U yang digunakan untuk membandingkan median 'selling_price' antara kedua kelompok yang berbeda. Dalam kasus ini, statistik U memiliki nilai sebesar 2177.0.</p>
+</li>
+<li>
+<p><strong>P-value (Nilai P)</strong>: P-value adalah nilai probabilitas yang dihasilkan dari Uji Mann-Whitney U. Ini mengukur sejauh mana perbedaan median 'selling_price' antara kedua kelompok 'Manual' dan 'Automatic' pada kolom 'Transmission' adalah hasil dari variasi acak atau jika perbedaan tersebut signifikan secara statistik. Nilai P sekitar 0.0076, yang lebih rendah dari tingkat signifikansi 0.05, menunjukkan bahwa perbedaan median 'selling_price' antara kedua kelompok ini adalah signifikan secara statistik.</p>
+</li>
+<li>
+<p><strong>Terdapat perbedaan signifikan</strong>: Karena nilai P lebih rendah dari tingkat signifikansi yang ditetapkan (0.05), kita dapat menyimpulkan bahwa ada perbedaan signifikan dalam median 'selling_price' antara kelompok 'Manual' dan 'Automatic' pada kolom 'Transmission'. Ini mengindikasikan bahwa jenis transmisi kendaraan ('Transmission') secara signifikan memengaruhi harga jual ('selling_price') kendaraan.</p>
+</li>
+</ul>
+<p>Hasil ini dapat memberikan wawasan berharga dalam pengambilan keputusan terkait dengan jenis transmisi kendaraan, seperti penentuan harga atau strategi pemasaran yang lebih tepat untuk masing-masing jenis transmisi.</p>
+<p><strong>Membandingkan antar kelompok pada kolom owner berdasarkan selling_price</strong></p>
+<p><img alt="EDA_6_Uji_hipotesis_3_transmission" src="images/EDA_6_Uji_hipotesis_3_transmission.png" /></p>
+<p>Dalam hipotesis null, kita berasumsi bahwa tidak ada perbedaan signifikan dalam rata-rata harga jual antara kategori kepemilikan. Hipotesis alternatif menyatakan bahwa setidaknya satu dari rata-rata harga jual dalam kategori kepemilikan berbeda dari yang lainnya, yang mengindikasikan adanya perbedaan signifikan.</p>
+<p>Uji Anova kemudian akan digunakan untuk menguji apakah terdapat perbedaan yang signifikan dalam rata-rata harga jual ('selling_price') antara kelompok kategori kepemilikan ('owner').</p>
+<p><img alt="EDA_6_Uji_hipotesis_4_owner" src="images/EDA_6_Uji_hipotesis_4_owner.png" /></p>
+<p>Hasil Anova yang Anda sajikan menunjukkan bahwa tidak ada perbedaan signifikan dalam 'selling_price' antara berbagai kategori 'owner'. Untuk menguraikan lebih lanjut arti dari hasil ini, mari kita bahas beberapa konsep penting:</p>
+<ol>
+<li>
+<p><strong>Statistic (Statistik)</strong>: Nilai statistik ini adalah hasil dari uji Anova yang digunakan untuk membandingkan rata-rata 'selling_price' antara kelompok-kelompok yang berbeda. Dalam kasus ini, statistik memiliki nilai sekitar 1.35.</p>
+</li>
+<li>
+<p><strong>P-value (Nilai P)</strong>: P-value adalah nilai probabilitas yang dihasilkan dari uji statistik. Ini mengukur sejauh mana perbedaan dalam 'selling_price' antara kelompok-kelompok 'owner' adalah hasil dari variasi acak atau jika perbedaan tersebut signifikan secara statistik. Nilai P yang cukup tinggi, sekitar 0.26, menunjukkan bahwa perbedaan yang diamati kemungkinan besar disebabkan oleh kebetulan.</p>
+</li>
+<li>
+<p><strong>Tidak terdapat perbedaan signifikan</strong>: Ketika nilai P tinggi (biasanya lebih tinggi dari tingkat signifikansi yang telah ditentukan sebelumnya, dalam kasus ini 0.05), kita tidak memiliki cukup bukti statistik untuk menyatakan bahwa terdapat perbedaan signifikan dalam 'selling_price' antara kategori 'owner'. Dengan kata lain, jenis owner ('owner') kemungkinan tidak memiliki dampak signifikan pada harga jual ('selling_price') kendaraan berdasarkan data yang dianalisis.</p>
+</li>
+</ol>
+<p>Dalam konteks ini, hasil ini menunjukkan bahwa perbedaan dalam kategori 'owner' tidak begitu penting dalam menjelaskan variasi dalam harga jual kendaraan. Hal ini dapat memandu kebijakan harga atau strategi pemasaran yang lebih umum daripada yang berfokus pada jenis kepemilikan kendaraan.</p>
+<h3 id="kesimpulan-eda">Kesimpulan EDA</h3>
+<ol>
+<li>
+<p>data tidak mengandung missing value</p>
+</li>
+<li>
+<p>Imputasi Modus : Year dan Imputasi Median = Kms_Driven, Present_Price dan Owner</p>
+</li>
+<li>
+<p>Outlier tidak dilakukan handling apapun karena merupakan data yang bisa saja terjadi didunia nyata</p>
+</li>
+<li>
+<p>proporsi data pada kolom Fuel_Type terbanyak disandang oleh mobil yang berbahan bakar Petrol sebanyak 177 dengan persentase 78.67% dan yang terendah ialah CNG sebanyak 1 dengan persentase 0.44%</p>
+</li>
+<li>
+<p>proporsi data pada kolom Seller_Type terbanyak disandang oleh tipe penjual Dealer sebanyak 145 dengan persentase 64.44% dan yang terendah ialah Individual sebanyak 80 dengan persentase 35.56%</p>
+</li>
+<li>
+<p>proporsi data pada kolom Transmission terbanyak disandang oleh tipe transmisi Manual sebanyak 193 dengan persentase 85.78% dan yang terendah ialah Automatic sebanyak 32 dengan persentase 14.22%</p>
+</li>
+<li>
+<p>proporsi data pada kolom owner terbanyak disandang oleh tipe owner 0 sebanyak 216 dengan persentase 96.00% dan yang terendah ialah 3 sebanyak 1 dengan persentase 0.44%</p>
+</li>
+<li>
+<p>Secara korelasi, korelasi negatif terendah terdapat pada variabel Year dan Kms_Driven sebesar -0.53 dan Present_Price dan Selling_Price memiliki korelasi positif yang tinggi sebesar 0.89</p>
+</li>
+<li>
+<p>Setelah dicek menggunakan pengujian anova variabel Fuel_Type, Seller_Type, Transmission yang masing masing value dari kolomnya terdapat perbedaan signifikan dalam rata-rata harga jual atau selling_price, yang berarti masing masing variabel dapat memberikan dampak signifikan terhadap harga jual atau selling_price. Namun variabel Owner tidak memiliki perbedaan signifikan dalam Selling_Price yang berarti variabel Owner tidak memberikan dampak signifikan terhadap harga jual atau selling_price</p>
+</li>
+<li>
+<p>Tren Temporal Selling Price dari masing-masing variabel cenderung mengalami pola fluktuatif</p>
+</li>
+</ol>
+<h2 id="data-preprocessing">Data Preprocessing</h2>
+<p><strong> Gambar Data Preprocessing </strong></p>
+<p><img alt="flow_chart_3_data_preprocessing" src="images/flow_chart_3_data_preprocessing.png" /></p>
+<p>Setelah mendapatkan mandat dari hasil eksplorasi data diatas maka dilakukan implementasi pada data preprocessing antara lain</p>
+<ol>
+<li>Handling Missing Value dengan Year, Kms_Driven, Present_Price, dan Owner akan dilakukan imputasi dengan metode median.</li>
+<li>Get Dummies pada Kolom Fuel_Type, Seller_Type, dan Transmission</li>
+</ol>
+<p><img alt="Processing_1_GetDummies" src="images/Processing_1_GetDummies.png" /></p>
+<p>Setelah melakukan get dummies pada data terlihat kolom Fuel_Type, Seller_Type, dan Transmission sudah berubah bentuk menjadi get_dummies dengan membentuk kolom 7 kolom baru</p>
+<ol>
+<li>Scaling data pada kolom “Kms_Driven” dan “Present_Price” dan sudah dilakukan sorted data.</li>
+</ol>
+<p><img alt="Processing_2_Robust_Scaler" src="images/Processing_2_Robust_Scaler.png" /></p>
+<ol>
+<li>Data Clean, siap untuk dilanjutkan pada tahap pemodelan</li>
+</ol>
+<h2 id="data-modeling">Data Modeling</h2>
+<p><img alt="flow_chart_4.drawio" src="images/flow_chart_4.drawio.png" /></p>
+<ol>
+<li>
+<p>Setelah melakukan Data Preprocessing, hasilnya akan dilakukan pemodelan agar bisa memprediksi harga kendaraan</p>
+</li>
+<li>
+<p>Pemodelan Regression akan menggunakan metode Experiment, dan model yang terbaik adalah model XGBoostRegressor dengan tunning parameter dengan GridsearchCV</p>
+</li>
+</ol>
+<h3 id="xgboost-regressor-gradient-boosting-for-regression">XGBoost Regressor: Gradient Boosting for Regression</h3>
+<p>XGBoost (Extreme Gradient Boosting) adalah salah satu algoritma machine learning yang sangat efektif untuk tugas regresi. Algoritma ini beroperasi menggunakan teknik Gradient Boosting, yang merupakan metode ensemble learning. XGBoost membangun sejumlah decision tree secara sekuensial, dengan setiap tree berfungsi untuk memperbaiki hasil prediksi dari tree sebelumnya. Ini adalah pendekatan yang sangat kuat untuk memodelkan hubungan antara fitur-fitur input dan target regresi.</p>
+<p>Berikut adalah cara XGBoost Regressor bekerja dalam konteks pemodelan regresi:</p>
+<ul>
+<li>
+<p><strong>Pembangunan Decision Tree</strong>: XGBoost membangun sejumlah decision tree secara berurutan. Setiap tree bertujuan untuk memperbaiki hasil prediksi dari tree sebelumnya.</p>
+</li>
+<li>
+<p><strong>Loss Function</strong>: Untuk mengukur sejauh mana hasil prediksi dari model mendekati nilai aktual, XGBoost menggunakan loss function. Dalam regresi, mean squared error (MSE) sering digunakan sebagai loss function. Rumus matematis untuk MSE adalah:</p>
+</li>
+</ul>
+<p><img alt="Data_Modeling_MSE" src="images/Data_Modeling_MSE.png" /></p>
+<p>Rumus ini digunakan untuk mengukur seberapa baik model regresi memodelkan data aktual dengan meminimalkan jumlah kuadrat selisih antara nilai aktual (y_i) dan nilai prediksi (ŷ_i) untuk semua sampel (i).</p>
+<ul>
+<li><strong>Optimisasi Objective Function</strong>: Selama proses pelatihan, XGBoost melakukan optimisasi terhadap objective function. Objective function ini berusaha meminimalkan kesalahan antara prediksi dan nilai aktual dengan menambahkan sejumlah decision tree.</li>
+</ul>
+<p>Rumus matematis untuk objective function dalam regresi dengan XGBoost adalah sebagai berikut:</p>
+<p><img alt="Data_Modeling_XGBoost" src="images/Data_Modeling_XGBoost.png" /></p>
+<p>Selama pelatihan, XGBoost menggunakan teknik optimisasi gradient descent. Setiap decision tree yang ditambahkan pada model membantu memperbaiki prediksi dari tree sebelumnya dengan menambahkan residual error dari iterasi sebelumnya pada setiap label target. Pada akhir iterasi, XGBoost menghasilkan prediksi regresi final berupa nilai kontinu untuk masing-masing sampel dalam data uji.</p>
+<p>Dengan teknik-teknik seperti pembelajaran berbasis histogram dan pruning, XGBoost sering dianggap sebagai salah satu algoritma terbaik untuk regresi. Itu juga dapat digunakan untuk tugas klasifikasi dan ranking.</p>
+<p><strong>Tuning Parameter dengan GridSearchCV</strong></p>
+<p>GridSearchCV adalah alat yang sangat berguna untuk mengoptimalkan model XGBoost dalam konteks regresi. Ini memungkinkan pencarian sistematis dari kombinasi parameter terbaik untuk meningkatkan kinerja model. Prosesnya adalah sebagai berikut:</p>
+<ol>
+<li>
+<p><strong>Pilih Parameter yang Akan Diuji</strong>: Pertama, kita memilih parameter apa yang ingin kita optimalkan, seperti <code>learning_rate</code>, <code>max_depth</code>, <code>n_estimators</code>, dan lainnya.</p>
+</li>
+<li>
+<p><strong>Definisikan Rentang Nilai</strong>: Kemudian, kita menentukan rentang nilai yang ingin diuji untuk setiap parameter. Misalnya, <code>learning_rate</code> mungkin diuji pada nilai [0.01, 0.1, 0.2], <code>max_depth</code> pada nilai [3, 4, 5], dan seterusnya.</p>
+</li>
+<li>
+<p><strong>Lakukan Pencarian</strong>: GridSearchCV akan melakukan pencarian sistematis, menguji setiap kombinasi parameter dalam "grid" yang telah ditentukan. Ini berarti mencoba semua kemungkinan kombinasi parameter.</p>
+</li>
+<li>
+<p><strong>Evaluasi Kinerja</strong>: Setiap kombinasi parameter akan dievaluasi dengan metrik kinerja yang telah ditentukan, seperti MSE dalam kasus regresi. Kombinasi yang memberikan kinerja terbaik pada data validasi akan dipilih sebagai parameter terbaik.</p>
+</li>
+</ol>
+<p>Dengan demikian, penggunaan XGBoost Regressor dan tuning parameter menggunakan GridSearchCV adalah pendekatan yang sangat efektif untuk membangun model regresi yang sangat akurat untuk masalah yang rumit. </p>
+<h3 id="experiment-model-result">Experiment Model Result</h3>
+<p><img alt="Data_Modeling_1" src="images/Data_Modeling_1.png" /></p>
+<h3 id="best-model-result">Best Model Result</h3>
+<p><img alt="Data_Modeling_2" src="images/Data_Modeling_2.png" /></p>
+<p><img alt="Data_Modeling_3" src="images/Data_Modeling_3.png" /></p>
+<p><img alt="Data_Modeling_4" src="images/Data_Modeling_4.png" /></p>
+<pre><code>Parameter Terbaik:
+{'colsample_bytree': 1.0, 'max_depth': None, 'min_child_weight': 1, 'n_estimators': 50, 'subsample': 0.8}
+</code></pre>
+<p>Diatas merupakan parameter terbaik untuk pemodelan XGBoostRegressor, yang menghasilkan metrics sebagai berikut :</p>
+<pre><code>MAE (Mean Absolute Error) Train:  0.04091571565336652
+MAE (Mean Absolute Error) Test:  0.5076566367679173
+MAE (Mean Absolute Error) Valid:  0.4070950624827415
+</code></pre>
+<p>Hasil tersebut dirasa sudah cukup baik untuk memprediksi selling_price dari kendaraan, karena metrics MAE cenderung memiliki nilai yang kecil, yang dimana semakin kecil nilai MAE maka model akan semakin baik memprediksi</p>
+<p>Observasi:</p>
+<ul>
+<li>Performa model cukup baik ketika memprediksi selling_price pada rentang data 0 –15</li>
+<li>jika diatas 15 maka performa akan turun</li>
+</ul>
+<p>Action:</p>
+<ul>
+<li>EDA data-data dengan selling_price yang terlalu tinggi</li>
+<li>Perlu penambahan data dengan value diatas 15 agar model dapat mempelajari data dengan lebih baik</li>
+</ul>
+<h2 id="machine-learning-services">Machine Learning Services</h2>
+<p><img alt="flow_chart_5_ML_Services" src="images/flow_chart_5_ML_Services.png" /></p>
+<p>Selanjutnya, setelah melalui beberapa proses dan model telah di save akan dilanjutkan pada deployment dengan menggunakan API dan Streamlit gambar dibawah ini merupakan contoh mengakses menggunakan ML Services melalui FAST API Swagger UI</p>
+<p>Berikut contoh input data yang digunakan untuk mengakses API</p>
+<p><img alt="ML_Service_1" src="images/ML_Service_1.png" /></p>
+<p>Berikut hasil output prediksi dari API services</p>
+<p><img alt="ML_Service_2" src="images/ML_Service_2.png" /></p>
+<p>Agar lebih ramah dalam menggunakannya dan tampilannya lebih powerfull, user disuguhkan dengan apps sederhana yang dibangun dengan menggunakan streamlit services, berikut contoh penggunaannya</p>
+<p><img alt="ML_Service_3" src="images/ML_Service_3.png" /></p>
+<p>User diharapkan mengisi form yang sudah disediakan hingga selesai, jika terdapat kesalahan range dalam input data streamlit akan menampilkan error dibagian mana yang inputnya salah, jika dirasa sudah sesuai kriteria maka klik tombol <code>predict</code> dan akan mengelarkan hasil prediksi harga kendaraan.</p>
+<h3 id="menggunakan-docker-container">Menggunakan Docker Container</h3>
+<p>Ketika service ingin dijalankan bersamaan, maka kita perlu menggunakan tools yang mendukung hal tersebut, salah satunya dapat menggunakan docker berikut contoh service sederhana yang dijalankan dengan bantuan docker</p>
+<p><img alt="ML_Service_4" src="images/ML_Service_4.png" /></p>
+<p><img alt="ML_Service_5" src="images/ML_Service_5.png" /></p>
+<h2 id="cara-menjalankan-service">Cara Menjalankan Service</h2>
+<h3 id="cara-menjalankan-script-dilokal-dengan-dua-terminal-sekaligus">Cara menjalankan Script Dilokal dengan Dua Terminal Sekaligus</h3>
+<h4 id="konfigurasi-awal">Konfigurasi Awal</h4>
+<ul>
+<li>Buat satu folder untuk clone file-file yang tersedia pada laman github ini</li>
+<li>clone repository github ini</li>
+<li>instalasi virtual environment</li>
+<li>aktifkan virtual environment yang telah dibuat</li>
+<li>install requirements.txt dengan cara <code>pip install -r requirements.txt</code></li>
+<li>file sudah dikonfigurasi, lanjutkan step dibawah ini sesuai dengan keinginan</li>
+</ul>
+<h4 id="cara-menjalankan-api">Cara Menjalankan API</h4>
+<ul>
+<li>Pastikan masuk ke folder utama program</li>
+<li>ketik - <code>python src/api.py</code></li>
+<li>lalu akan dirujuk pada laman <code>http://127.0.0.1:8080</code></li>
+</ul>
+<h4 id="cara-menjalankan-streamlit">Cara Menjalankan Streamlit</h4>
+<ul>
+<li>edit pada file src/streamlit pada bagian dari yang sebelumnya </li>
+<li><code>response = requests.post("http://api:8080/predict/", json=data)</code> menjadi ini</li>
+<li><code>response = requests.post("http://localhost:8080/predict/", json=data)</code></li>
+<li>Pastikan masuk ke folder utama program</li>
+<li>ketik - <code>streamlit run src/streamlit.py</code></li>
+<li>lalu akan diarahkan pada tampilan UI streamlit pada laman <code>http://localhost:8501/</code></li>
+</ul>
+<h4 id="cara-serve-mkdocs">Cara serve MkDocs</h4>
+<ul>
+<li>Pastikan sudah berada didalam folder docs</li>
+<li>ketik - <code>mkdocs serve</code></li>
+<li>lalu laman dokumen akan muncul pada laman <code>http://127.0.0.1:8000</code></li>
+</ul>
+<h3 id="cara-menjalankan-sevice-dengan-menggunakan-docker">Cara menjalankan Sevice dengan menggunakan Docker</h3>
+<p>Langkah langkah menggunakan menjalankan service dengan menggunakan docker:</p>
+<ul>
+<li>pastikan docker sudah diaktifkan dan dalam kondisi login</li>
+<li>lalu, jalankan melalui terminal yang sudah diaktifkan virtual environment dengan script berikut <code>docker compose up -d --build</code></li>
+<li>pastikan script <code>src/streamlit</code> pada pemanggilan api menggunakan script dibawah ini
+<code>response = requests.post("http://api:8080/predict/", json=data)</code></li>
+<li>Selesai service sudah bisa digunakan</li>
+</ul>
+<h2 id="kesimpulan">Kesimpulan</h2>
+<ul>
+<li>Dalam project ini, dataset untuk memprediksi Selling_Price kendaraan antara lain menggunakan variabel Year, Present_Price, Kms_Driven, Fuel_Type, Seller_Type, Transmission, Owner.</li>
+<li>Project ini turut melakukan eksperimentasi model untuk mendapatkan model yang optimal dalam memprediksi Selling_Price dari kendaraan, setelah melakukan eksperimentasi, model XGBoost dengan Parameter Tunning ditetapkan sebagai model terbaik yang digunakan untuk proses production atau deployment model dengan hasil evaluation metrics MAE (Mean Absolute Error) Train: 0.0409, MAE (Mean Absolute Error) Test: 0.508, MAE (Mean Absolute Error) Valid: 0.407. Dengan parameter terbaik {‘colsample_bytree’: 1.0, ‘max_depth’: None, ‘min_child_weight’: 1, ‘n_estimators’: 50, ‘subsample’: 0.8}. Hasil Pemodelan tersebut dirasa cukup representatif untuk digunakan untuk memprediksi Selling_Price.</li>
+<li>Pada Observasi error analysis Performa model cukup baik ketika memprediksi selling_price pada rentang data 0 –15 jika diatas 15 maka performa akan turun walau tidak signifikan dengan demikian pada EDA data-data dengan selling_price yang terlalu tinggi, Perlu penambahan data dengan value diatas 15 agar model dapat mempelajari data dengan lebih baik</li>
+</ul>
+<h3 id="future-works">Future Works</h3>
+<ul>
+<li>Dapat menggunakan data yang bisa discrap dari beberapa situs penjualan mobil bekas, dan dapat pula mengeksplorasi lebih dalam untuk penggunaan deep learning seperti yang telah saya sampaikan pada literature review diatas. Penambahan variabel dapat pula dilakukan agar lebih detail kondisi mobil yang akan diprediksi. Setelah dilakukan deployment pada local, dapat pula dilanjutkan pada tahap deployment server agar lebih berguna untuk khalayak.</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>https://machinelearningmastery.com/xgboost-for-regression/</li>
+<li>https://xgboost.readthedocs.io/en/stable/parameter.html</li>
+<li>https://towardsdatascience.com/xgboost-theory-and-practice-fb8912930ad6</li>
+<li>https://medium.com/hoyalytics/xgboost-theory-and-application-4801a5dba4fb</li>
+<li>Afandizadeh, S., Sharifi, D., Kalantari, N., &amp; Mirzahossein, H. (2023). Using machine learning methods to predict electric vehicles penetration in the automotive market. Scientific Reports, 13(1). https://doi.org/10.1038/s41598-023-35366-3</li>
+<li>Krishnan, J. R., &amp; Selvaraj, V. (2022). Predicting Resale Car Prices Using Machine Learning Regression Models With Ensemble Techniques. AIP Conference Proceedings, 2516. https://doi.org/10.1063/5.0108560</li>
+<li>Kriswantara, B., &amp; Sadikin, R. (2022). Used Car Price Prediction with Random Forest Regressor Model. Journal of Information Systems, Informatics and Computing Issue Period, 6(1), 40–49. https://doi.org/10.52362/jisicom.v6i1.752</li>
+<li>MUTİ, S., &amp; YILDIZ, K. (2023). Using Linear Regression For Used Car Price Prediction. International Journal of Computational and Experimental Science and Engineering, 9(1), 11–16. https://doi.org/10.22399/ijcesen.1070505</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="about/" class="btn btn-neutral float-right" title="TENTANG SAYA">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Prasetyo Widyantoro@2023</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+      <span><a href="about/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.4.2
+Build Date UTC : 2023-10-09 03:53:02.332835+00:00
+-->
